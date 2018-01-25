@@ -9,4 +9,17 @@ Une conectivitée en wifi est prévue via l'ajout d'une [Feather Huzzah](https:/
  > [Exemple de montage des transistors](https://www.tinkercad.com/things/7Uf0n2DrO2y)
 
 
+# library to install
 [SimpleTimer](https://playground.arduino.cc/Code/SimpleTimer#Download) librairie arduino utilisée
+
+
+# Functions recap
+
+The main loop 
+ >  Call the slow loop every "to be defined" seconds
+ > >  Update sensors
+ > >  With sensors updated, do safety checks (mostly water level)
+ > >  Apply programed actions depending of sensors
+ 
+ >  Wait for outside events.
+ > > Can be physical buttons, IFTT events etc...
