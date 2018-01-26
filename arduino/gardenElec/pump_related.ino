@@ -7,13 +7,13 @@ void updatePompe(float intensity) {
 
     //safety check before run
     if (pumpAlert == true || intensity == 0 ){
-      //analogWrite( POMPE, 0 );
       digitalWrite( POMPE, 0 );
-    } else {
-     // analogWrite( POMPE, analogPompe );
+    } else if (intensity == 1) {
       digitalWrite( POMPE, 1 );
-
+    } else {
+      analogWrite( POMPE, analogPompe); //Si jamais le circuit supporte du PWM sur la pompe
     }
+    
 }
 
 

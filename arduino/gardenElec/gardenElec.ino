@@ -1,8 +1,5 @@
-
 ///// For Adafruit Pro Trinket 5V
 
-
-//D'après un code init
 
 #include <SimpleTimer.h>  //https://github.com/schinken/SimpleTimer pour gerer les timeout
 SimpleTimer timer; // the timer object
@@ -45,19 +42,18 @@ void setup(){
     pinMode( LVL1, INPUT );
     pinMode( LVL2, INPUT );
 
-    ///Variables pour le debug
+
+    ///Les boucles standard
+    timer.setInterval(1000, sensorsRead);
+    timer.setInterval(100, inputRead);
+
+    ///La boucle pour le debug
     timer.setInterval(100, debugLoop);
 
 }
 
 void loop(){
-
- // timer.setInterval(1000, sensorsRead);
- // timer.setInterval(100, inputRead);
-
-timer.run();
-
-  
+  timer.run();
 }
 
 

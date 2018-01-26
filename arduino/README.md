@@ -10,16 +10,28 @@ Une conectivitée en wifi est prévue via l'ajout d'une [Feather Huzzah](https:/
 
 
 # library to install
+
 [SimpleTimer](https://playground.arduino.cc/Code/SimpleTimer#Download) librairie arduino utilisée
 
 
 # Functions recap
 
-The main loop 
- >  Call the slow loop every "to be defined" seconds
+ - The main loop
+
+    1 - Basics sensors (slow update)
+ >  Call the function every "to be defined" seconds
  > >  Update sensors
  > >  With sensors updated, do safety checks (mostly water level)
  > >  Apply programed actions depending of sensors
  
+    2 - Check local events (quick)
  >  Wait for outside events.
  > > Can be physical buttons, IFTT events etc...
+ 
+    3 - Check remote events (medium update speed)
+ >  Check the online datas
+ 
+ - Tools available
+
+1- 
+
