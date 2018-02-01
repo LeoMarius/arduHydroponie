@@ -8,3 +8,9 @@ void debugLoop(){
   
 }
 
+
+void forcerLumiereW( int duree ) {
+  
+  
+}
+
