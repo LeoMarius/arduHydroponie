@@ -1,10 +1,9 @@
 void serialEvent(){
     while ( Serial.available() && !stringComplete ) {
-        digitalWrite( RED_LED, LOW );
-        char inChar = ( char ) mySerial.read();
+        char inChar = ( char ) Serial.read();
         if ( inChar != '\n' ) {
             inputString += inChar;
-            len++;
+            inputStringLength ++;
         }
         else {
             stringComplete = true;
@@ -12,13 +11,13 @@ void serialEvent(){
     }
 
     if ( stringComplete ) {
+        digitalWrite( RED_LED, LOW );
         Serial.print( "sending -> " );
         Serial.println( inputString );
-        char buf[ len ];
-        inputString.toCharArray( buf, len );
-        Serial.println( counter->save( buf ) );
+        logsFeed->save( inputString );
+
         inputString = "";
-        len = 0;
+        inputStringLength = 0;
         stringComplete = false;
         digitalWrite( RED_LED, HIGH );
     }

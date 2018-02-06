@@ -3,13 +3,16 @@
 #define RED_LED 0
 #define BLUE_LED 2
 
-String inputString = ""; // a string to hold incoming data
-int len = 0;
-boolean stringComplete = false;  // whether the string is complete
+String inputString = "";
+int inputStringLength = 0;
+boolean stringComplete = false;
+
+AdafruitIO_Feed *logsFeed = io.feed( "logs" );
 
 AdafruitIO_Feed *tempFeed = io.feed( "temp" );
 AdafruitIO_Feed *lightFeed = io.feed( "light" );
 AdafruitIO_Feed *waterLvlFeed = io.feed( "waterlevel" );
+
 AdafruitIO_Feed *pumpStateFeed = io.feed( "pumpstate" );
 AdafruitIO_Feed *warmLedsFeed = io.feed( "warmleds" );
 AdafruitIO_Feed *coldLedsFeed = io.feed( "coldleds" );
