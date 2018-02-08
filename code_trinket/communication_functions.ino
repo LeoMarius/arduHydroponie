@@ -35,13 +35,11 @@ void parseString() {
     else if( inputString.startsWith( "setLeds:" ) ) {
         char state = inputString.charAt( inputStringLength - 1 );
         if( state == '0' ){
-            setLeds( WARM_LED_PIN, LOW );
-            setLeds( COLD_LED_PIN, LOW );
+            setLeds( LOW );
             Serial.println( "OK: LEDS OFF" );
         }
         else if( state == '1' ) {
-            setLeds( WARM_LED_PIN, HIGH );
-            setLeds( COLD_LED_PIN, HIGH );
+            setLeds( HIGH );
             Serial.println( "OK: LEDS ON" );
         }
 
