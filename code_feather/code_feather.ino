@@ -7,15 +7,7 @@ String inputString = "";
 int inputStringLength = 0;
 boolean stringComplete = false;
 
-AdafruitIO_Feed *logsFeed = io.feed( "logs" );
-
-AdafruitIO_Feed *tempFeed = io.feed( "temp" );
-AdafruitIO_Feed *lightFeed = io.feed( "light" );
-AdafruitIO_Feed *waterLvlFeed = io.feed( "waterlevel" );
-
-AdafruitIO_Feed *pumpStateFeed = io.feed( "pumpstate" );
-AdafruitIO_Feed *warmLedsFeed = io.feed( "warmleds" );
-AdafruitIO_Feed *coldLedsFeed = io.feed( "coldleds" );
+AdafruitIO_Group *group = io.group( "default" );
 
 void setup() {
     pinMode( RED_LED, OUTPUT );
@@ -24,10 +16,13 @@ void setup() {
     digitalWrite( BLUE_LED, HIGH );
 
     Serial.begin( 9600 );
-    Serial.print( "Connecting to Adafruit IO" );
 
     // connect to io.adafruit.com
     io.connect();
+
+    group->onMessage( "pump", handlePumpStateFeed );
+    group->onMessage( "warmleds", handleWarmLedsFeed );
+    group->onMessage( "coldleds", handleColdLedsFeed );
 
     // wait for a connection
     while ( io.status() < AIO_CONNECTED ) {
@@ -40,15 +35,11 @@ void setup() {
     Serial.println();
     Serial.println( io.statusText() );
 
-    pumpStateFeed->onMessage( handlePumpStateFeed );
-    warmLedsFeed->onMessage( handleWarmLedsFeed );
-    coldLedsFeed->onMessage( handleColdLedsFeed );
-
-    Serial.println( "Waiting for data..." );
+    Serial.println( "getValues" );
     inputString.reserve( 200 ); // reserve a buffer in memory for 200 chars max
 }
 
 void loop() {
     io.run();
-    serialEvent();
+    checkSerial();
 }
