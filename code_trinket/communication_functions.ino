@@ -14,7 +14,7 @@ void serialEvent() {
 
 void parseString() {
     // do parsing
-    if( inputString.startsWith( "getValues" ) ){
+    if( inputString.startsWith( "getValues" ) ) {
         readSensors();
         sendStates();
     }
@@ -28,31 +28,28 @@ void parseString() {
             setPump( HIGH );
             Serial.println( "OK: PUMP ON" );
         }
+
+        readSensors();
+        sendStates();
     }
-    else if( inputString.startsWith( "setWarmLight:" ) ) {
+    else if( inputString.startsWith( "setLeds:" ) ) {
         char state = inputString.charAt( inputStringLength - 1 );
         if( state == '0' ){
             setLeds( WARM_LED_PIN, LOW );
-            Serial.println( "OK: WARM LEDS OFF" );
-        }
-        else if( state == '1' ){
-            setLeds( WARM_LED_PIN, HIGH );
-            Serial.println( "OK: WARM LEDS ON" );
-        }
-    }
-    else if( inputString.startsWith( "setColdLight:" ) ) {
-        char state = inputString.charAt( inputStringLength - 1 );
-        if( state == '0' ){
             setLeds( COLD_LED_PIN, LOW );
-            Serial.println( "OK: COLD LEDS OFF" );
+            Serial.println( "OK: LEDS OFF" );
         }
-        else if( state == '1' ){
+        else if( state == '1' ) {
+            setLeds( WARM_LED_PIN, HIGH );
             setLeds( COLD_LED_PIN, HIGH );
-            Serial.println( "OK: COLD LEDS ON" );
+            Serial.println( "OK: LEDS ON" );
         }
+
+        readSensors();
+        sendStates();
     }
     else {
-        Serial.print( "CMD ERROR:" );
+        Serial.print( "LOG:" );
         Serial.println( inputString );
     }
 
@@ -65,7 +62,6 @@ void sendStates(){
     Serial.println( "waterlevel:" + String( waterLvl ) );
     Serial.println( "temp:" + String( temp ) );
     Serial.println( "light:" + String( light ) );
-    Serial.println( "coldleds:" + String( coldLightIntensity ) );
-    Serial.println( "warmleds:" + String( warmLightIntensity ) );
+    Serial.println( "leds:" + String( ledsIntensity ) );
     Serial.println( "pump:" + String( pumpIntensity ) );
 }

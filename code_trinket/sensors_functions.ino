@@ -1,4 +1,4 @@
-void readSensors(){
+void readSensors() {
     light = analogRead( LIGHT_PIN );
     temp = getTemperature();
     waterLvl = getWaterLevel();
@@ -30,10 +30,10 @@ int getWaterLevel() {
     return lvl1 + lvl2;
 }
 
-void safetyChecks( int lvl ){
+void safetyChecks( int lvl ) {
     if( lvl == 0 ){
         setPump( LOW );
-    } else{
+    } else {
         setPump( HIGH );
     }
 }

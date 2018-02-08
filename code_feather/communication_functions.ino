@@ -1,7 +1,7 @@
-void checkSerial(){
-    while ( Serial.available() && !stringComplete ) {
+void checkSerial() {
+    while( Serial.available() && !stringComplete ) {
         char inChar = ( char ) Serial.read();
-        if ( inChar != '\n' ) {
+        if( inChar != '\n' ) {
             inputString += inChar;
             inputStringLength ++;
         }
@@ -10,13 +10,12 @@ void checkSerial(){
         }
     }
 
-    if ( stringComplete ) {
+    if( stringComplete ) {
         if(
             inputString.startsWith( "waterlevel:" ) ||
             inputString.startsWith( "temp:" ) ||
             inputString.startsWith( "light:" ) ||
-            inputString.startsWith( "coldleds:" ) ||
-            inputString.startsWith( "warmleds:" ) ||
+            inputString.startsWith( "leds:" ) ||
             inputString.startsWith( "pump:" )
         ){
             int index = inputString.indexOf( ":" );

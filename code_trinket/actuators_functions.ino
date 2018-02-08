@@ -9,23 +9,15 @@ void setPump( int intensity ) {
     }
 }
 
-void setLeds( int pin, int intensity ) {
-    if( pin == WARM_LED_PIN ) {
-        warmLightIntensity = intensity;
-    }
-    else if( pin == COLD_LED_PIN ) {
-        coldLightIntensity = intensity;
-    }
+void setLeds( int intensity ) {
+    ledsIntensity = intensity;
 
-    if( pin == WARM_LED_PIN || pin == COLD_LED_PIN ) {
-        if( intensity == LOW  ){
-            digitalWrite( pin, LOW);
-        }
-        else if( intensity == HIGH ) {
-            digitalWrite( pin, HIGH);
-        }
-        else {
-            analogWrite( pin , intensity );
-        }
+    if( intensity == LOW  ) {
+        digitalWrite( COLD_LED_PIN, LOW);
+        digitalWrite( WARM_LED_PIN, LOW);
+    }
+    else if( intensity == HIGH ) {
+        digitalWrite( COLD_LED_PIN, HIGH);
+        digitalWrite( WARM_LED_PIN, HIGH);
     }
 }
