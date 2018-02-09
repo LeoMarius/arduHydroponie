@@ -22,29 +22,23 @@ void parseString() {
         char state = inputString.charAt( inputStringLength - 1 );
         if( state == '0' ){
             setPump( LOW );
-            Serial.println( "OK: PUMP OFF" );
+            Serial.println( "pump:0" );
         }
         else if( state == '1' ){
             setPump( HIGH );
-            Serial.println( "OK: PUMP ON" );
+            Serial.println( "pump:1" );
         }
-
-        readSensors();
-        sendStates();
     }
     else if( inputString.startsWith( "setLeds:" ) ) {
         char state = inputString.charAt( inputStringLength - 1 );
-        if( state == '0' ){
+        if( state == '0' ) {
             setLeds( LOW );
-            Serial.println( "OK: LEDS OFF" );
+            Serial.println( "leds:0" );
         }
         else if( state == '1' ) {
             setLeds( HIGH );
-            Serial.println( "OK: LEDS ON" );
+            Serial.println( "leds:1" );
         }
-
-        readSensors();
-        sendStates();
     }
     else {
         Serial.print( "LOG:" );
@@ -58,8 +52,12 @@ void parseString() {
 
 void sendStates(){
     Serial.println( "waterlevel:" + String( waterLvl ) );
+    delay( 100 );
     Serial.println( "temp:" + String( temp ) );
+    delay( 100 );
     Serial.println( "light:" + String( light ) );
+    delay( 100 );
     Serial.println( "leds:" + String( ledsIntensity ) );
+    delay( 100 );
     Serial.println( "pump:" + String( pumpIntensity ) );
 }

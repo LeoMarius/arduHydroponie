@@ -2,7 +2,7 @@
 ///////////////////////////////////////////////////
 
 #define READ_SENSORS_INTERVAL 1000
-#define SEND_STATES_INTERVAL 300000
+#define SEND_STATES_INTERVAL 30000
 
 #define PUMP_PIN A0
 #define WARM_LED_PIN A1
@@ -32,19 +32,17 @@ int inputStringLength = 0;
 void setup() {
     // init actuators pins
     pinMode( PUMP_PIN, OUTPUT );
+    setPump( LOW );
+
     pinMode( COLD_LED_PIN, OUTPUT );
     pinMode( WARM_LED_PIN, OUTPUT );
-
-    digitalWrite( PUMP_PIN, LOW );
-    digitalWrite( COLD_LED_PIN, LOW );
-    digitalWrite( WARM_LED_PIN, LOW );
+    setLeds( HIGH );
 
     // init sensors pins
     pinMode( TEMP_PIN, INPUT );
     pinMode( LIGHT_PIN, INPUT );
     pinMode( WATER_LVL1_PIN, INPUT );
     pinMode( WATER_LVL2_PIN, INPUT );
-
 
     // Init Serial communication
     Serial.begin( 9600 );

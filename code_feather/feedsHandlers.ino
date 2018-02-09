@@ -1,17 +1,11 @@
-void handlePumpStateFeed( AdafruitIO_Data *data ) {
+void handlePumpFeed( AdafruitIO_Data *data ) {
+    String value = String( data->value() );
     Serial.print( "setPump:" );
-    String value = String( data->value() );
-    Serial.println( value.equals( "OFF" ) ? "0" : "1" );
+    Serial.println( value.startsWith( "OFF" ) ? "0" : "1" );
 }
 
-void handleWarmLedsFeed( AdafruitIO_Data *data ) {
-    Serial.print( "setWarmLight:" );
+void handleLedsFeed( AdafruitIO_Data *data ) {
     String value = String( data->value() );
-    Serial.println( value.equals( "OFF" ) ? "0" : "1" );
-}
-
-void handleColdLedsFeed( AdafruitIO_Data *data ) {
-    Serial.print( "setColdLight:" );
-    String value = String( data->value() );
-    Serial.println( value.equals( "OFF" ) ? "0" : "1" );
+    Serial.print( "setLeds:" );
+    Serial.println( value.startsWith( "OFF" ) ? "0" : "1" );
 }
