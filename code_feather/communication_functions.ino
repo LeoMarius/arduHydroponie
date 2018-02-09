@@ -35,7 +35,10 @@ void checkSerial() {
             group->set( feedNameAsCharArray, value.startsWith( "1" ) ? "ON" : "OFF" );
         }
         else {
-            group->set( "logs", inputString );
+            if( millis() - ts > 5000 ){
+                group->set( "logs", inputString );
+                ts = millis();
+            }
         }
         group->save();
 

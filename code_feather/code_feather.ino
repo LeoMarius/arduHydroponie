@@ -9,6 +9,8 @@ boolean stringComplete = false;
 
 AdafruitIO_Group *group = io.group( "default" );
 
+long ts = 0;
+
 void setup() {
     pinMode( RED_LED, OUTPUT );
     digitalWrite( RED_LED, HIGH );
