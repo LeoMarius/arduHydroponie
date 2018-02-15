@@ -20,28 +20,13 @@ void parseString() {
     }
     else if( inputString.startsWith( "setPump:" ) ) {
         char state = inputString.charAt( inputStringLength - 1 );
-        if( state == '0' ){
-            setPump( LOW );
-            Serial.println( "pump:0" );
-        }
-        else if( state == '1' ){
-            setPump( HIGH );
-            Serial.println( "pump:1" );
-        }
+        setPump( state == '1' ? HIGH : LOW );
     }
     else if( inputString.startsWith( "setLeds:" ) ) {
         char state = inputString.charAt( inputStringLength - 1 );
-        if( state == '0' ) {
-            setLeds( LOW );
-            Serial.println( "leds:0" );
-        }
-        else if( state == '1' ) {
-            setLeds( HIGH );
-            Serial.println( "leds:1" );
-        }
+        setLeds( state == '1' ? HIGH : LOW );
     }
     else {
-        Serial.print( "LOG:" );
         Serial.println( inputString );
     }
 
