@@ -25,7 +25,7 @@ void setup() {
     // connect to io.adafruit.com
     io.connect();
 
-    group->onMessage( "leds", handleLedsFeed );
+    group->onMessage( "ledsetter", handleLedSetterFeed );
 
     // wait for a connection
     while ( io.status() < AIO_CONNECTED ) {
