@@ -2,7 +2,8 @@
 ///////////////////////////////////////////////////
 
 #define READ_SENSORS_INTERVAL 1000
-#define SEND_STATES_INTERVAL 30000
+#define SEND_STATES_INTERVAL 60000L
+#define TOGGLE_PUMP_INTERVAL 3600000L
 
 #define PUMP_PIN A0
 #define WARM_LED_PIN A1
@@ -24,6 +25,8 @@ float temp;
 // actuators values
 int ledsIntensity = 0,
     pumpIntensity = 0;
+
+boolean activePump = true;
 
 // Serial communication
 String inputString = "";
@@ -52,6 +55,7 @@ void setup() {
     // init timed loops
     timer.setInterval( READ_SENSORS_INTERVAL, readSensors );
     timer.setInterval( SEND_STATES_INTERVAL, sendStates );
+    timer.setInterval( TOGGLE_PUMP_INTERVAL, togglePump );
 }
 
 void loop() {

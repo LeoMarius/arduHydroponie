@@ -6,14 +6,19 @@ void readSensors() {
     if( waterLvl == 2 ) {
         setPump( HIGH );
     }
+    else if( waterLvl == 1 ) {
+        setPump( activePump ? HIGH : LOW );
+    }
     else if( waterLvl == 0 ) {
         setPump( LOW );
     }
 }
 
 float getTemperature() {
-    float voltage = analogRead( TEMP_PIN ) / 1024.0 * 5.0;
-    return ( voltage - 0.5 ) * 100.0;
+    int sensorVal = analogRead( TEMP_PIN );
+    float voltage = ( sensorVal / 1023.0 ) * 5.0;
+    float temperature = ( voltage - 0.5 ) * 100;
+    return temperature;
 }
 
 int getWaterLevel() {
