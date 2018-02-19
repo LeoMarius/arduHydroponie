@@ -6,8 +6,7 @@
 #define TOGGLE_PUMP_INTERVAL 3600000L
 
 #define PUMP_PIN A0
-#define WARM_LED_PIN A1
-#define COLD_LED_PIN A2
+#define LED_PIN A1
 
 #define TEMP_PIN A4
 #define LIGHT_PIN A3
@@ -37,8 +36,7 @@ void setup() {
     pinMode( PUMP_PIN, OUTPUT );
     setPump( LOW );
 
-    pinMode( COLD_LED_PIN, OUTPUT );
-    pinMode( WARM_LED_PIN, OUTPUT );
+    pinMode( LED_PIN, OUTPUT );
     setLeds( HIGH );
 
     // init sensors pins
@@ -60,4 +58,5 @@ void setup() {
 
 void loop() {
     timer.run();
+    delay( 100 );
 }
