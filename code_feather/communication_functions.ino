@@ -13,8 +13,6 @@ void checkSerial() {
         else {
             if(
                 inputString.startsWith( "waterlevel:" ) ||
-                inputString.startsWith( "temp:" ) ||
-                inputString.startsWith( "light:" ) ||
                 inputString.startsWith( "leds:" ) ||
                 inputString.startsWith( "pump:" )
             ){
@@ -29,6 +27,12 @@ void checkSerial() {
                 Serial.println( value );
 
                 group->set( feedNameAsCharArray, value );
+            }
+            else if( inputString.startsWith( "alert1" ) ) {
+                group->set( "alert1", 1 );
+            }
+            else if( inputString.startsWith( "alert0" ) ) {
+                group->set( "alert0", 1 );
             }
             else {
                 Serial.print( "logs" );

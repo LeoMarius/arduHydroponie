@@ -1,24 +1,42 @@
-void readSensors() {
-    light = analogRead( LIGHT_PIN );
-    temp = getTemperature();
-    waterLvl = getWaterLevel();
+void readWaterLevel() {
+    int currentWaterLvl = getWaterLevel();
+
+    if( currentWaterLvl < waterLvl ){
+        if( currentWaterLvl == 1 ){
+            Serial.println( "alert1" );
+        }
+        else if( currentWaterLvl == 0 ){
+            Serial.println( "alert0" );
+        }
+    }
+
+    waterLvl = currentWaterLvl;
 
     if( waterLvl == 2 ) {
         setPump( HIGH );
     }
     else if( waterLvl == 1 ) {
         setPump( activePump ? HIGH : LOW );
+
+        for( int i = 255; i > 0; i -- ){
+            analogWrite( LED_PIN, i );
+            delay( 10 );
+        }
+        for( int i = 0; i < 255; i ++ ){
+            analogWrite( LED_PIN, i );
+            delay( 10 );
+        }
     }
     else if( waterLvl == 0 ) {
         setPump( LOW );
-    }
-}
 
-float getTemperature() {
-    int sensorVal = analogRead( TEMP_PIN );
-    float voltage = ( sensorVal / 1023.0 ) * 5.0;
-    float temperature = ( voltage - 0.5 ) * 100;
-    return temperature;
+        for( int i = 0; i < 10; i ++ ){
+            digitalWrite( LED_PIN, LOW );
+            delay( 200 );
+            digitalWrite( LED_PIN, HIGH );
+            delay( 200 );
+        }
+    }
 }
 
 int getWaterLevel() {

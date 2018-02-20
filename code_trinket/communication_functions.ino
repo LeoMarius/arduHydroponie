@@ -13,9 +13,8 @@ void serialEvent() {
 }
 
 void parseString() {
-    // do parsing
     if( inputString.startsWith( "getValues" ) ) {
-        readSensors();
+        readWaterLevel();
         sendStates();
     }
     else if( inputString.startsWith( "setPump:" ) ) {
@@ -38,11 +37,7 @@ void parseString() {
 void sendStates(){
     Serial.println( "waterlevel:" + String( waterLvl ) );
     delay( 100 );
-    Serial.println( "temp:" + String( temp ) );
-    delay( 100 );
-    Serial.println( "light:" + String( light ) );
+    Serial.println( "pump:" + String( pumpIntensity ) );
     delay( 100 );
     Serial.println( "leds:" + String( ledsIntensity ) );
-    delay( 100 );
-    Serial.println( "pump:" + String( pumpIntensity ) );
 }
