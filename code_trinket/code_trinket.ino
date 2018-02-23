@@ -2,6 +2,7 @@
 ///////////////////////////////////////////////////
 
 #define READ_WATERLEVEL_INTERVAL 60000L
+#define WATERLEVEL0_ALERT_INTERVAL 86400000L
 #define SEND_STATES_INTERVAL 300000L
 #define TOGGLE_PUMP_INTERVAL 3600000L
 
@@ -34,8 +35,28 @@ void setup() {
     setPump( LOW );
 
     pinMode( LED_PIN, OUTPUT );
+    
     setLeds( HIGH );
 
+    delay( 1000 );
+
+    for( int i = 0; i < 10; i ++ ) {
+        digitalWrite( LED_PIN, LOW );
+        delay( 200 );
+        digitalWrite( LED_PIN, HIGH );
+        delay( 200 );
+    }
+
+    delay( 1000 );
+
+    for( int i = 255; i > 0; i -- ) {
+        analogWrite( LED_PIN, i );
+        delay( 10 );
+    }
+    for( int i = 0; i < 255; i ++ ) {
+        analogWrite( LED_PIN, i );
+        delay( 10 );
+    }
 
     // Init Serial communication
     Serial.begin( 9600 );
@@ -44,8 +65,11 @@ void setup() {
 
     // init timed loops
     timer.setInterval( READ_WATERLEVEL_INTERVAL, readWaterLevel );
+    timer.setInterval( WATERLEVEL0_ALERT_INTERVAL, waterLevel0Alert );
     timer.setInterval( SEND_STATES_INTERVAL, sendStates );
     timer.setInterval( TOGGLE_PUMP_INTERVAL, togglePump );
+
+    waterLvl = getWaterLevel();
 }
 
 void loop() {

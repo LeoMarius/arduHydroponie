@@ -28,6 +28,9 @@ void checkSerial() {
 
                 group->set( feedNameAsCharArray, value );
             }
+            else if( inputString.startsWith( "alert2" ) ) {
+                group->set( "alert2", 1 );
+            }
             else if( inputString.startsWith( "alert1" ) ) {
                 group->set( "alert1", 1 );
             }
