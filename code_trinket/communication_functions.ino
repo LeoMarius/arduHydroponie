@@ -36,7 +36,7 @@ void parseString() {
     inputStringLength = 0;
 }
 
-void sendStates(){
+void sendStates() {
     Serial.println( "waterlevel:" + String( waterLvl ) );
     delay( 200 );
     Serial.println( "pump:" + String( pumpIntensity ) );
