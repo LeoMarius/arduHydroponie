@@ -38,8 +38,8 @@ void parseString() {
 
 void sendStates(){
     Serial.println( "waterlevel:" + String( waterLvl ) );
-    delay( 100 );
+    delay( 200 );
     Serial.println( "pump:" + String( pumpIntensity ) );
-    delay( 100 );
+    delay( 200 );
     Serial.println( "leds:" + String( ledsIntensity ) );
 }
