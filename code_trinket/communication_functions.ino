@@ -21,9 +21,11 @@ void parseString() {
         char state = inputString.charAt( inputStringLength - 1 );
         setPump( state == '1' ? HIGH : LOW );
     }
-    else if( inputString.startsWith( "setLeds:" ) ) {
-        char state = inputString.charAt( inputStringLength - 1 );
-        setLeds( state == '1' ? HIGH : LOW );
+    else if( inputString.startsWith( "setLeds:0" ) ) {
+        setLeds( LOW );
+    }
+    else if( inputString.startsWith( "setLeds:1" ) ) {
+        setLeds( HIGH );
     }
     else {
         Serial.println( inputString );

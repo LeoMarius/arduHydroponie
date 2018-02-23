@@ -32,3 +32,29 @@ void setLeds( int intensity ) {
 void togglePump() {
     activePump = !activePump;
 }
+
+void signalWaterLvl_1() {
+    for( int i = 250; i > 0; i -- ) {
+        analogWrite( LED_PIN, i );
+        delay( 10 );
+    }
+    for( int i = 0; i < 250; i ++ ) {
+        analogWrite( LED_PIN, i );
+        delay( 10 );
+    }
+}
+
+void signalWaterLvl_0() {
+    analogWrite( LED_PIN, 10 );
+    delay( READ_WATERLEVEL_INTERVAL / 6 );
+    analogWrite( LED_PIN, 50 );
+    delay( READ_WATERLEVEL_INTERVAL / 6 );
+    analogWrite( LED_PIN, 10 );
+    delay( READ_WATERLEVEL_INTERVAL / 6 );
+    analogWrite( LED_PIN, 50 );
+    delay( READ_WATERLEVEL_INTERVAL / 6 );
+    analogWrite( LED_PIN, 10 );
+    delay( READ_WATERLEVEL_INTERVAL / 6 );
+    analogWrite( LED_PIN, 50 );
+    delay( READ_WATERLEVEL_INTERVAL / 6 );
+}

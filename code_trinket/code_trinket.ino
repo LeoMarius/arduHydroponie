@@ -1,7 +1,7 @@
 ///// For Adafruit Pro Trinket 5V
 ///////////////////////////////////////////////////
 
-#define READ_WATERLEVEL_INTERVAL 60000L
+#define READ_WATERLEVEL_INTERVAL 5000
 #define WATERLEVEL0_ALERT_INTERVAL 86400000L
 #define SEND_STATES_INTERVAL 300000L
 #define TOGGLE_PUMP_INTERVAL 3600000L
@@ -35,28 +35,8 @@ void setup() {
     setPump( LOW );
 
     pinMode( LED_PIN, OUTPUT );
-    
+
     setLeds( HIGH );
-
-    delay( 1000 );
-
-    for( int i = 0; i < 10; i ++ ) {
-        digitalWrite( LED_PIN, LOW );
-        delay( 200 );
-        digitalWrite( LED_PIN, HIGH );
-        delay( 200 );
-    }
-
-    delay( 1000 );
-
-    for( int i = 255; i > 0; i -- ) {
-        analogWrite( LED_PIN, i );
-        delay( 10 );
-    }
-    for( int i = 0; i < 255; i ++ ) {
-        analogWrite( LED_PIN, i );
-        delay( 10 );
-    }
 
     // Init Serial communication
     Serial.begin( 9600 );

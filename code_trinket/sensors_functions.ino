@@ -4,6 +4,7 @@ void readWaterLevel() {
     if( currentWaterLvl != waterLvl ) {
         if( currentWaterLvl == 2 ) {
             Serial.println( "alert2" );
+            setLeds( HIGH );
         }
         else if( currentWaterLvl == 1 ) {
             Serial.println( "alert1" );
@@ -20,25 +21,11 @@ void readWaterLevel() {
     }
     else if( waterLvl == 1 ) {
         setPump( activePump ? HIGH : LOW );
-
-        for( int i = 255; i > 0; i -- ) {
-            analogWrite( LED_PIN, i );
-            delay( 10 );
-        }
-        for( int i = 0; i < 255; i ++ ) {
-            analogWrite( LED_PIN, i );
-            delay( 10 );
-        }
+        signalWaterLvl_1();
     }
     else if( waterLvl == 0 ) {
         setPump( LOW );
-
-        for( int i = 0; i < 10; i ++ ) {
-            digitalWrite( LED_PIN, LOW );
-            delay( 200 );
-            digitalWrite( LED_PIN, HIGH );
-            delay( 200 );
-        }
+        signalWaterLvl_0();
     }
 }
 
