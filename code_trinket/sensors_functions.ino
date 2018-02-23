@@ -30,8 +30,11 @@ void readWaterLevel() {
 }
 
 int getWaterLevel() {
-    int lvl1 = readCapacitivePin( WATER_LVL1_PIN ) >= 3 ? 1 : 0;
-    int lvl2 = readCapacitivePin( WATER_LVL2_PIN ) >= 3 ? 1 : 0;
+    int cap1 = readCapacitivePin( WATER_LVL1_PIN );
+    int lvl1 = cap1 >= 4 ? 1 : 0;
+    int cap2 = readCapacitivePin( WATER_LVL2_PIN );
+    int lvl2 = cap2 >= 4 ? 1 : 0;
+    Serial.println( "cap1:" + String( cap1 ) + "  cap2:" + String( cap2 ) + "  lvl:" + String( lvl1 + lvl2 ) );
     return lvl1 + lvl2;
 }
 

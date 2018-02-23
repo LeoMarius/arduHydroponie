@@ -54,5 +54,6 @@ void setup() {
 
 void loop() {
     timer.run();
+    //getWaterLevel(); // uncomment for testing water level sensors + comment timer.run();
     delay( 100 );
 }
